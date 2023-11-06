@@ -1,0 +1,40 @@
+Exercice 1
+
+class stock 
+  def --init--(self, name, price,dividend):
+    self.name = name
+    self.price = price 
+    self.dividend = dividend 
+  def yield_dividend(self):
+    return self.dividend/self.price 
+apple_stock = stock('Apple', 150, 0.82)
+print(apple_stock.yield_dividend())
+
+Exercice 2
+
+class Portfolio : # on définit une classe 
+  def--init--(self):
+    self.instruments : {} # utilisé pour store the financial instruments added to the portfolio
+  def add_instruments (self,name, current_price) : #method qui nous permet d'ajouter des industruments dans le portfolio.
+    instrument = {'name':name, 'current_price'=current_price]
+    self.instruments.append(instrument)
+  def total_value (self):
+    total = 0 
+    for instrument in self.instruments
+    total += instrument['current_price']
+  return total
+
+Exercice 3 
+
+class CurrencyConverter : 
+  def--init--(self) # on initialise un dictionnaire pour stocker les taux de conversion 
+    self.rates = {}
+  def add_rates (self,source_currecy, target_currency, rate): #methode pour ajouter un taux de conversation pour une paire de devises donnée
+    self.rates[(source_currency, target_currency)] = rate 
+  def convert(self,amount,source_currency, target_currency):
+    if source_currency == target_currency :
+      return amount 
+    elif (source_currency,target_currency) in self.rates
+      return amount*self.Rates[(source_currency, target_currency)]
+    else:
+      return None 
