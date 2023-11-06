@@ -1,0 +1,37 @@
+NumPy allows to perform bulk mathematical operations on data 
+np is numpy 
+
+Exercice 1 
+
+np.random.seed(0) #fixe une graine pour le générateur de nombres aléatoires i.e si on exécute le code plusieurs fois avec la même graine, on obtiendra exactement les mêmes séquences de nombres aléatoires à chaque exécution.
+daily_returns=np.random.normal (0.001,0.02,1000) #on génère 1000 returns de manière aléatoire.
+stock_prices = [100]
+for r in daily_returns
+  stock_prices.append(stock_prices[-1]*(1+r))#takes the last element of the stock_prices list
+print(stock_prices[-1])
+
+Exercice 2 
+
+σ1 = 0.1  # Standard deviation of asset 1
+σ2 = 0.2  # Standard deviation of asset 2
+ρ1_2 = 0.5  # Correlation coefficient between assets 1 and 2
+w1 = 0.6  # Weight of asset 1 in the portfolio
+w2 = 0.4  # Weight of asset 2 in the portfolio
+portfolio_variance = (w1**2 * σ1**2) + (w2**2 * σ2**2) + (2 * w1 * w2 * σ1 * σ2 * ρ1_2)
+print("Portfolio Variance:", portfolio_variance)
+
+Exercice 3 
+
+returns = np.arrays([0.10,0.15]) 
+returns = np.arrays([0.20,0.30]) 
+weights = np.linspace(0,1,11) #linspace est utilisé pour générer des valeurs régulièrement espacées. On définit une série de poids pour A et B. On commence par 0 pour A et 100 pour B.
+portfolio_returns = []
+portfolio_volatilities = []
+for w in weights : #calcul des rendements et des volatilités du portefeuille pour chaque combinaison de poids
+  portfolio_return =np.dot(returns, [1-w, w]) #on calcule le retour par rapport au poids de l'actif 
+  portfolio_variance = (1-w)**2*volatilities[0]**2+w**2*volatilities [1]**2+2*w*(1-w)*np.cov(returns[0],returns[1])[0,1]
+  portfolio_volatility = np.sqrt(portfolio_variance)
+portfolio_returns.append(portfolio_return)
+portfolio_volatilities.append(portfolio_volatility)
+for i in range(len(weights)):
+  print (f"Weight A: {weights[i]*100}%, Weight B: {(1-weights[i])*100}%, Portfolio Return: {portfolio_returns[i]*100:.2f}%, Portfolio Volatility: {portfolio_volatilities[i]*100:.2f}%")
