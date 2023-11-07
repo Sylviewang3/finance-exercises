@@ -41,7 +41,7 @@ else:
 print("Do not buy the bond.")
 
 bond_yield = 3.8
-if bond_yield = 4.0:
+if bond_yield == 4.0:
 print("Buy the bond.")
 else:
 print("Do not buy the bond.")
