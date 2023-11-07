@@ -1,0 +1,31 @@
+Exercice 1 
+
+import matplotlib.pyplot as plt 
+stock_prices = [105,103,106,109,108,107,110,112,111,113]
+plt.plot(stock_prices) #création d'un graphique 
+plt.title('Stock Prices Over 10 Days')
+plt.xlabel('Days')
+plt.ylabel('Stock Price')
+plt.show()
+
+import matplotlib.pyplot as plt
+stock_prices_1 = [105, 103, 106, 109, 108, 107, 110, 112, 111, 113]
+stock_prices_2 = [107, 108, 107, 107, 106, 108, 109, 108, 109, 110]
+days = range(1, 11)
+plt.plot(days, stock_prices_1, label='Stock 1', color='blue')
+plt.plot(days, stock_prices_2, label='Stock 2', color='red')
+plt.title('Stock Prices Over 10 Days')
+plt.xlabel('Days')
+plt.ylabel('Stock Price')
+plt.show()
+
+Exercice 2 
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+returns = [0.05, -0.02, 0.03, -0.01, 0.02, 0.03, -0.03, 0.01, 0.04, -0.01]
+sns.histplot(returns, bins=5, kde=True) # 5 colonnes 
+plt.title('Distribution of Stock Returns')
+plt.show()
+
+
