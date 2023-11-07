@@ -1,0 +1,243 @@
+4.1. Exercices related to 'Present value'
+
+Exercise 1
+
+def present_value(fv, r, n):
+    return fv / (1 + r)**n
+FV = 120
+r = 0.05
+n = 2
+PV = present_value(FV, r, n)
+print(f"The present value is: ${PV:.2f}")
+
+Exercice 2 
+def calculate_present_value(fv, r, n):
+    return fv / (1 + r)**n
+
+FV = 500 
+r = 0.06  
+n = 2     
+
+PV = present_value(FV, r, n)
+print(f"The present value is: ${PV:.2f}")
+
+# Exercice 3
+def calculate_present_value(fv, r, n):
+    return fv / (1 + r)**n
+
+FV = 1000 
+r = 0.04  
+n = 5     
+
+PV = present_value(FV, r, n)
+print(f"The present value is: ${PV:.2f}")
+
+4.2. Exercices related to 'Future Value'
+
+Exercice 1 
+def future_value(pv, r, n):
+    return pv * (1 + r)**n
+PV = 90
+r = 0.07
+n = 1
+FV = future_value(PV, r, n)
+print(f"The future value is: ${FV:.2f}")
+
+Exercice 2
+def future_value(pv, r, n):
+    return pv * (1 + r)**n
+PV = 200
+r = 0.03
+n = 2
+FV = future_value(PV, r, n)
+print(f"The future value is: ${FV:.2f}")
+
+Exercice 3
+def future_value(pv, r, n):
+    return pv * (1 + r)**n
+PV = 150
+r = 0.05
+n = 3
+FV = future_value(PV, r, n)
+print(f"The future value is: ${FV:.2f}")
+
+4.3. Exercices related to "Discounting and compounding"
+
+Exercice 2 
+
+def discount(fv,r):
+  return fv/(1+r)
+fv=115
+r=0.08
+
+PV=discount(fv,r)
+print(f"you'll receive :${pv:.2f}")
+
+Exercice 3 
+
+def compound (fv,r,n)
+  return fv*(1+r)**n
+
+fv=500
+r=0.06
+n=2
+
+PV=compound(fv,r,n)
+print (f"you'll have to invest":${PV:.2f}")
+
+Exercice 4 
+
+def discount(fv,r,n)
+  return fv/(1+r)**n
+
+fv=180
+r=0.1
+n=2
+
+pv=discount(fv,r,n)
+print (f"the value today is":${pv:.2f})
+
+Exercice 5
+
+def discount(fv,r,n)
+  return fv/(1+r)**n
+
+fv=1000
+r=0.07
+n=3
+
+pv=discount(fv,r,n)
+print (f"the value today is":${pv:.2f})
+
+4.5. Working with Time Series Data using pandas 
+4.5.1. Exercices related to "Fetching Data from Yahoo Finance"
+
+Exercice 1 
+# Download Microsoft stock data
+msft_data = yf.download("MSFT", start="2021-01-01", end="2022-01-01")
+print(msft_data.head())
+
+Exercice 2 
+# Import the yfinance library
+import yfinance as yf
+
+# Download Google stock data
+googl_data = yf.download("GOOGL", start="2020-01-01", end="2022-12-31")
+print(googl_data.head())
+
+Exercice 3 
+# Import the yfinance library
+import yfinance as yf
+
+# Download Amazon stock data for the last quarter of 2021
+amzn_data = yf.download("AMZN", start="2021-10-01", end="2021-12-31")
+print(amzn_data.head())
+
+4.5.2. Exercices related to "plotting the closing prices"
+
+Exercice 1
+
+tesla_data = yf.download("TSLA", start="2020-01-01", end="2021-01-01")
+tesla_data[’Close’].plot(figsize=(10, 5)) #création d'un graphique des prix de clôture en utilisant plot. 10 pouces de largeur et 5 pouces de hauteur
+plt.title(’Tesla Stock Closing Prices 2020’)
+plt.ylabel(’Price (in \$)’)
+plt.xlabel(’Date’)
+plt.show()
+
+Exercice 2 
+
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+# Download Netflix stock data for the first half of 2022
+nflx_data = yf.download("NFLX", start="2022-01-01", end="2022-06-30")
+
+# Plot the daily closing prices
+nflx_data['Close'].plot(figsize=(10, 5))
+plt.title('Netflix Stock Closing Prices - First Half of 2022')
+plt.ylabel('Price (in \$)')
+plt.xlabel('Date')
+plt.show()
+
+Exercice 3 
+
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+fb_data = yf.download("FB", start="2019-01-01", end="2019-12-31")
+
+fb_data['Close'].plot(figsize=(10, 5))
+plt.title('Facebook Stock Closing Prices - 2019')
+plt.ylabel('Price (in $)')
+plt.xlabel('Date')
+plt.show()
+
+4.5.3. Exercices related to "calculating moving averages"
+
+Exercice 1 
+
+ibm_data = yf.download("IBM", start="2020-01-01", end="2021-01-01")
+ibm_data[’30-day MA’] = ibm_data[’Close’].rolling(window=30).mean() #sur 30 jours de prix de clôture, rolling crée une fenêtre sur 30 jours pour le calcul de la moyenne mobile, mean calcule la moyenne de ces valeurs. Le résultat est stocké dans une colonne appelée 30-day MA
+ibm_data[[’Close’, ’30-day MA’]].plot(figsize=(10, 5)) #graphique qui affiche les prix de clôture quotidiens ainsi que la moyenne mobile sur 30 jours
+plt.title(’IBM Stock Prices with 30-day Moving Average 2020’)
+plt.ylabel(’Price (in \$)’)
+plt.xlabel(’Date’)
+plt.show()
+
+Exercice 2
+
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+adbe_data = yf.download("ADBE", start="2021-01-01", end="2021-12-31")
+adbe_data['20-day MA'] = adbe_data['Close'].rolling(window=20).mean()
+adbe_data[['close','20-day MA']].plot(figsize=(10, 5))
+plt.title('Adobe Systems (ADBE) Stock Closing Prices with 20-day Moving Average - 2021')
+plt.ylabel('Price (in $)')
+plt.xlabel('Date')
+plt.show()
+
+Exercice 3
+
+nvda_data = yf.download("NVDA", start="2022-01-01", end="2022-12-31")
+nvda_data['40-day MA'] = nvda_data['Close'].rolling(window=40).mean()
+nvda_date[['close','40-day MA']].plot(figsize=(10, 5))
+plt.title('Prix de clôture de Nvidia Corporation (NVDA) avec Moyenne Mobile 40 jours - 2022')
+plt.ylabel('Prix (en $)')
+plt.xlabel('Date')
+plt.show()
+
+4.5.4. Exercices related to resampling 
+
+Exercice 1 
+
+sbux_data = yf.download("SBUX", start="2020-01-01", end="2021-01-01")
+monthly_data = sbux_data[’Close’].resample(’M’).mean() #extrait la colonne des prix de clôture, methode resample pour rééchantilloner les données en prix moyens mensuels 'M' en prenant la moyenne de chaque mois
+monthly_data.plot(figsize=(10, 5)) #graphique des prix moyens mensuels de clôture de Starbucks 
+plt.title(’Starbucks Monthly Average Closing Prices 2020’)
+plt.ylabel(’Price (in \$)’)
+plt.xlabel(’Date’)
+plt.show()
+
+Exercice 2 
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+dis_data = yf.download("DIS", start="2019-01-01", end="2019-12-31")
+biweekly_data = dis_data['Close'].resample('2W').mean()
+biweekly_data.plot(figsize=(10, 5))
+plt.title('Disney (DIS) Bi-Weekly Average Closing Prices - 2019')
+plt.ylabel('Price (in $)')
+plt.xlabel('Date')
+plt.show()
+
+Exercice 3 
+ko_data = yf.download("KO", start="2020-01-01", end="2020-12-31")
+quarterly_data = ko_data['Close'].resample('3M').mean()
+quarterly_data.plot(figsize=(10, 5))
+plt.title('Coca-Cola Company (KO) Quarterly Average Closing Prices - 2020')
+plt.ylabel('Price (in $)')
+plt.xlabel('Date')
+plt.show()
+
+
