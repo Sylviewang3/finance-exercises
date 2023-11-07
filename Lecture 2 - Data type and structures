@@ -29,6 +29,13 @@ stock_details = {"ticker": "AAPL", "opening_price": 142.7, "closing_price": 143.
 }
 print(stock_details)
 
-Exercice 1.6. 
+Exercice 1.6. v1 
 bond_details = {"issuer":"APPL", "maturity_date": 19.01.2033, "coupon_rate":0.02, "face_value" : 800}
 print(bond_details)
+
+Exercice 1.6. v2 
+from pprint import pprint
+obligation ={'Issuer':'French)government','Maturity_date':'19.01.2033','coupon_rate':'5%','face_value':85}
+
+pprint(obligation)
+print("face_value*coupon_rate:",obligation["face_value"] * obligation["coupon_rate"])
