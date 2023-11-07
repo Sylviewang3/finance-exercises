@@ -1,0 +1,16 @@
+import pandas as pd
+
+# Let ’s say we have the following stock prices and volumes for a stock :
+prices = [100 , 101 , 102 ]
+volumes = [200 , 210 , 220 ]
+
+# We can put this data into a DataFrame :
+data = {’Price ’: prices ,’Volume ’: volumes}
+df = pd. DataFrame ( data ) #price and volum ecome the column headers, and the lists become the columns of the Dataframe
+
+prices = [100,101,102]
+date = pd.date_range(start='2021-01-04', periods=3,freq='D')
+opening_prices_df=pd.dataframe(opening_prices, columns=['opening price'], index=dates) #opening price en colonne avec les dates à côté
+print (opening_prices_df)
+
+
