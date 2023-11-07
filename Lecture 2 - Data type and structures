@@ -30,5 +30,5 @@ stock_details = {"ticker": "AAPL", "opening_price": 142.7, "closing_price": 143.
 print(stock_details)
 
 Exercice 1.6. 
-bond_details = {"issuer":"APPL", "maturity_date": 1, "coupon_rate":0.02, "face_value" : 800}
+bond_details = {"issuer":"APPL", "maturity_date": 19.01.2033, "coupon_rate":0.02, "face_value" : 800}
 print(bond_details)
