@@ -20,7 +20,7 @@ print(stocks)
 
 Exercice 1.4. 
 portfolio = ["TSLA", "AMZN", "FB"]
-stocks_to_add = ["NVDA", "AMD"]
+stocks_to_add = ["NVDA", "AMD"] 
 portfolio.extend(stocks_to_add)
 print("Updated Portfolio:", portfolio)
 
