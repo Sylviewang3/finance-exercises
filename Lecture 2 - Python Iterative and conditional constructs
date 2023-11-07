@@ -1,4 +1,4 @@
-LOOP 
+"""LOOP """
 
 stock_prices = [105, 107, 104, 106, 103]
 for i in range(1, len(stock_prices)):
