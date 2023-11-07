@@ -1,6 +1,6 @@
 Exercice 1 
 
-class stock 
+class stock : 
   def --init--(self, name, price,dividend):
     self.name = name
     self.price = price 
