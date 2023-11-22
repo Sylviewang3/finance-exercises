@@ -1,3 +1,82 @@
+Exercice 0 
+"Assume you have a list of the daily closing prices of a stock for a month.Write a 'for' loop that calculates the average stock price for that month. Then using a 'while' loop, keep removing the highest daily price one by one until the average price falls below a certain threshold(eg.$100). Printing the new average each time you remove a price."
+
+immport numpy as np
+closing_prices=[]
+closing_prices=np.random.uniform(80,130,size=20)
+monthly_average=[]
+monthly_average = sum(closing_prices)/len(cloing_prices)
+threshold=100
+while monthly_average>=threshold:
+highest_value=max(closing_prices)
+closing_prices.remove(highest_value)
+monthly_average = sum(closing_prices)/len(closing_prices)
+print(monthly_average)
+
+Exercice 0 
+"Suppose a day trader follows this strategy: If a stock’s intra-day price
+drops more than 5% below its opening price, buy it. If it rises more
+than 10% above the opening price, sell it. Implement this strategy using
+conditional statements."
+
+stock_intra_price = int(input("enter the intra day stock price"))
+opening_price = int(input("enter the opening price"))
+if stock_intra_price < 0.95*opening_price:
+    print("buy it")
+elif stock_intra_price > 1.1*opening_price:
+    print ("sell it")
+else : 
+    print ("keep it")
+
+Exercice 0
+"""Create a class named Stock. It should have attributes for the ticker sym-
+bol, base price, and current price. Additionally, implement a method that
+returns the percentage change in price."""
+
+class Stock:
+    def__init__(self,ticker,base_price,current_price):
+        self.ticker = ticker
+        self.base_price=base_price
+        self.current_price=current_price
+    def percentage_change (self):
+        return ((self.current_price - self.base_price)/(self.base_price))*100
+
+stock1=stock("APPL", 100,110)
+stock_percentage_change=stock1.percentage_change()
+print(f"the percentage change in price is {stock_percentage_change}%")
+
+Exercice 0 
+"""Design a class named Portfolio. It should include a list of stocks (objects
+of the class Stock you created). Implement methods to add a new stock
+to the portfolio, remove a stock based on its ticker symbol, and calculate
+the total value of the portfolio."""
+
+class Stock :
+    def __init__(self,ticker,price):
+        self.ticker = ticker 
+        self.price = price 
+    def__str__(self)
+        return self.ticker
+
+
+apple_stock = Stock (ticker:"AAPL", price : 100)
+print(apple_stock.ticker)
+print(apple_stock.price)
+
+class Portfolio :
+    def__init__(self):
+        self.stocks = []
+
+    def add_stoc(self,stock):
+        self.stocks.append(stock)
+    def remove_stock(self,stock) :
+        self.stocks.remove(stock)
+
+eliott_portfolio = portfolio () 
+print(eliott_portfolio.stocks)
+...
+
+
 NumPy allows to perform bulk mathematical operations on data 
 np is numpy 
 
@@ -13,7 +92,7 @@ print(stock_prices[-1])
 Exercice 2 
 
 σ1 = 0.1  # Standard deviation of asset 1
-σ2 = 0.2  # Standard deviation of asset 2
+σ2 = 0.2  # Standard deviation of asset 2 
 ρ1_2 = 0.5  # Correlation coefficient between assets 1 and 2
 w1 = 0.6  # Weight of asset 1 in the portfolio
 w2 = 0.4  # Weight of asset 2 in the portfolio
@@ -35,3 +114,59 @@ portfolio_returns.append(portfolio_return)
 portfolio_volatilities.append(portfolio_volatility)
 for i in range(len(weights)):
   print (f"Weight A: {weights[i]*100}%, Weight B: {(1-weights[i])*100}%, Portfolio Return: {portfolio_returns[i]*100:.2f}%, Portfolio Volatility: {portfolio_volatilities[i]*100:.2f}%")
+
+Exercice 
+
+"""Create a NumPy array representing the price of a stock for 10 consecutive
+trading days. Calculate and print the average price, the highest price, and
+the lowest price using NumPy functions."""
+
+import numpy as np 
+stock_prices = np.array ([100,105,08,11à,102,115,108,120,112,125])
+
+average_price= np.mean(stock_prices)
+print("average price=", average_price)
+
+highest_price = np.max(stock_prices)
+print("highest price=", highest_price)
+
+lowest_price = np.min(stock_prices)
+print("lowest price=",lowest_price)
+
+Exercice 
+
+"""Given a NumPy array of daily stock returns for a month, compute and
+print the portfolio’s overall monthly return. Then, find and print the day
+which had the highest return and the day with the lowest return""" 
+
+import numpy as np
+
+daily_returns = np.random.uniform(-0.1,high 0.1, size 30)
+print(daily_returns)
+
+overall_returns = np.sum(daily_returns)
+print(overall_returns)
+
+max_return=np.argmax(daily_returns)
+print(max_return)
+
+min_return = np.argmin(daily_returns)
+print(min_return) 
+
+"""Write a script to simulate the price of a stock for 252 trading days (1
+year). Assume you start with a price of $100 and add daily fluctuations
+randomly, with the daily return normally distributed around 0% (mean)
+with 1% standard deviation. Calculate and print the price at the end of
+the year."""
+
+returns = np.array(np.random.normal(0,0.031,252))
+stock_prices = [100]
+for r in returns : 
+    stock_prices.append(stock_prices[-1]*(1+r))
+print (stock_prices
+
+
+"""Plot a line graph representing the stock price movement of two competing
+companies over a month. Use different colors and line styles for each
+company. Also, add a legend to distinguish the companies, and labels and
+title for the chart"""
