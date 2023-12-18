@@ -1,4 +1,11 @@
-Exercice 1 
+""" Exercice 1 Imagine you are modeling a simple stock in OOP.
+1. Create a class named ‘Stock‘ with attributes for the stock name, current
+price, and dividend.
+2. Implement a method called ‘yield dividend‘ that returns the yield based
+on the current price.
+3. Create an object instance of this stock with given parameters and print
+the dividend yield. """ 
+
 
 class stock : 
   def --init--(self, name, price,dividend):
@@ -10,7 +17,18 @@ class stock :
 apple_stock = stock('Apple', 150, 0.82)
 print(apple_stock.yield_dividend())
 
-Exercice 2
+
+
+
+
+
+""" Exercice 2. Imagine you are managing a portfolio of different financial instruments (stocks,
+bonds, etc.).
+1. Create a class named ‘Portfolio‘ with an attribute that keeps track of the
+instruments.
+2. Implement a method called ‘add instrument‘ that allows adding new financial instruments to the portfolio.
+3. Create a method to ‘total value‘ that returns the total value of the portfolio based on the current prices of the instruments."""
+
 
 class Portfolio : # on définit une classe 
   def--init--(self):
@@ -24,7 +42,19 @@ class Portfolio : # on définit une classe
     total += instrument['current_price']
   return total
 
-Exercice 3 
+
+
+
+
+
+"""Exercice 3. You are tasked with modeling a currency converter tool.
+1. Create a class ‘CurrencyConverter‘ that holds conversion rates for various
+currency pairs.
+2. Implement a method ‘convert‘ that takes in an amount, source currency,
+and target currency. This method should return the converted amount.
+3. Print the converted amount for a given pair.
+Hint: You can store conversion rates in a dictionary within the class."""
+
 
 class CurrencyConverter : 
   def--init--(self) # on initialise un dictionnaire pour stocker les taux de conversion 
