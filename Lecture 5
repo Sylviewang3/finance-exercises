@@ -1,16 +1,594 @@
+""" Exercise 1: Create a new DataFrame that contains the opening stock prices for the next three days
+(you can make up the prices). The DataFrame should have one column named ‘Opening Price‘ and the
+index should be three consecutive dates starting from ‘2021-01-04‘. 
+
+Exercise 2: Given the df DataFrame you created earlier, add two new columns: one for the high price
+of the day and one for the low price of the day. Populate these columns with any reasonable data. The
+result should be a DataFrame with four columns: ‘Price‘, ‘Volume‘, ‘High‘, and ‘Low‘. """ 
+
+
+import pandas as pd
+import numpy as np
+
+# Exercise 1
+dates = pd.date_range(start='2022-01-04', periods=3, freq='D')
+opening_prices = np.random.uniform(100, 150, size=3)  
+
+df = pd.DataFrame(index=dates, columns=['Opening Price'])
+df['Opening Price'] = opening_prices
+
+# Exercise 2
+df['High'] = np.random.uniform(df['Opening Price'] + 5, df['Opening Price'] + 10)
+df['Low'] = np.random.uniform(df['Opening Price'] - 5, df['Opening Price'])
+
+df['Volume'] = np.random.randint(100000, 500000, size=len(df))
+
+df.rename(columns={'Opening Price': 'Price'}, inplace=True)
+
+print(df)
+
+
+
+
+
+
+""" Create a NumPy array containing the closing stock prices for seven consecutive trading days;
+you may choose arbitrary values for the prices. Convert this array into a DataFrame with one column
+named ‘Closing Price‘. Use the pandas library to calculate the daily percentage change in closing price
+and add this as a new column to your DataFrame, naming it ‘Price Change (pct)‘. """
+
+
+import numpy as np
 import pandas as pd
 
-# Let ’s say we have the following stock prices and volumes for a stock :
-prices = [100 , 101 , 102 ]
-volumes = [200 , 210 , 220 ]
+closing_prices = np.array([105.2, 106.5, 107.8, 109.1, 110.4, 111.7, 113.0])
 
-# We can put this data into a DataFrame :
-data = {’Price ’: prices ,’Volume ’: volumes}
-df = pd. DataFrame ( data ) #price and volum ecome the column headers, and the lists become the columns of the Dataframe
+df = pd.DataFrame(closing_prices, columns=['Closing Price'])
 
-prices = [100,101,102]
-date = pd.date_range(start='2021-01-04', periods=3,freq='D')
-opening_prices_df=pd.dataframe(opening_prices, columns=['opening price'], index=dates) #opening price en colonne avec les dates à côté
-print (opening_prices_df)
+df['Price Change (pct)'] = df['Closing Price'].pct_change() * 100
+
+print(df)
+
+
+
+
+
+
+"""Using the NumPy library, create two arrays: one representing the volume of trades for
+each of five consecutive trading days, and another representing the average trade size for those days. Use
+arbitrary values for both arrays. Combine these arrays into a DataFrame with columns named ‘Volume‘
+and ‘Average Trade Size‘. Ensure that the data types for each column are appropriate for the values
+they represent"""
+
+
+import numpy as np
+import pandas as pd
+
+volume = np.array([100000, 120000, 90000, 110000, 95000])
+average_trade_size = np.array([500, 600, 450, 550, 475])
+
+df = pd.DataFrame({
+    'Volume': volume.astype(np.int32),  # Assuming volume is represented as integers
+    'Average Trade Size': average_trade_size.astype(np.float64)  # Assuming average trade size is represented as floating-point numbers
+})
+
+print(df)
+
+
+
+
+
+
+
+""" Create a pandas DataFrame that represents one month of trading data for a particular
+stock. The data should include columns for the date (Date), the closing price (Close), and the trading
+volume (Volume). Use the pandas date range function to generate a DatetimeIndex that only includes
+weekdays (assuming that the stock market is closed on weekends), and populate the DataFrame with
+arbitrary but reasonable values for the closing prices and volumes """ 
+
+
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range(start='2023-01-01', end='2023-01-31', freq='B')
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Close': np.random.uniform(100, 150, size=len(dates)),  
+    'Volume': np.random.randint(50000, 200000, size=len(dates)) 
+})
+
+print(df)
+
+
+
+
+
+
+
+""" Once your DataFrame is set up, write a command that filters out all rows corresponding to Mondays and
+calculates the average trading volume for these days. Hint: You might find the DataFrame.index.weekday
+attribute and the DataFrame.loc method useful for this task.
+Exercise 6: Assuming the same DataFrame with the date index, add a new column that shows the day
+of the week (Monday, Tuesday, etc.) for each date. Hint: Use the .day name() method provided by
+pandas on the date index. """
+
+
+import pandas as pd
+import numpy as np
+
+
+dates = pd.date_range(start='2023-01-01', end='2023-01-31', freq='B') 
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Close': np.random.uniform(100, 150, size=len(dates)),  # Arbitrary closing prices
+    'Volume': np.random.randint(50000, 200000, size=len(dates))  # Arbitrary trading volumes
+})
+
+mondays = df[df['Date'].dt.day_name() == 'Monday']
+average_volume_mondays = mondays['Volume'].mean()
+print(f"Average trading volume on Mondays: {average_volume_mondays:.2f}")
+
+df['Day of Week'] = df['Date'].dt.day_name()
+
+print(df)
+
+
+
+
+
+
+
+
+""" Exercise 1:
+• Create a DataFrame with at least 7 days of stock closing prices.
+• Calculate and print the mean and median of these prices. """
+
+
+import pandas as pd
+import numpy as np
+
+
+dates = pd.date_range(start='2023-01-01', periods=7, freq='B')  
+closing_prices = np.random.uniform(100, 150, size=len(dates)) 
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Closing Price': closing_prices
+})
+
+mean_price = df['Closing Price'].mean()
+median_price = df['Closing Price'].median()
+
+print(f"Mean closing price: {mean_price:.2f}")
+print(f"Median closing price: {median_price:.2f}")
+
+
+
+
+
+
+""" Exercise 2:
+• Compute the maximum and minimum closing price from the DataFrame you created in Exercise 1
+• Determine the day with the highest and lowest closing price. """
+
+
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range(start='2023-01-01', periods=7, freq='B') 
+closing_prices = np.random.uniform(100, 150, size=len(dates)) 
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Closing Price': closing_prices
+})
+
+max_price = df['Closing Price'].max()
+min_price = df['Closing Price'].min()
+
+max_day = df.loc[df['Closing Price'].idxmax(), 'Date']
+min_day = df.loc[df['Closing Price'].idxmin(), 'Date']
+
+print(f"Maximum closing price: {max_price:.2f}, on {max_day}")
+print(f"Minimum closing price: {min_price:.2f}, on {min_day}")
+
+
+
+
+
+
+
+
+""" Exercise 3:
+• Using the DataFrame from Exercise 1, create a line plot of the closing prices.
+• Customize your plot with a title, and label the x and y axes """
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+dates = pd.date_range(start='2023-01-01', periods=7, freq='B')  
+closing_prices = np.random.uniform(100, 150, size=len(dates))  
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Closing Price': closing_prices
+})
+
+plt.plot(df['Date'], df['Closing Price'], marker='o', linestyle='-', color='b')
+
+plt.title('Closing Prices Over Time')
+plt.xlabel('Date')
+plt.ylabel('Closing Price')
+
+plt.show()
+
+
+
+
+
+
+
+""" Exercise 4:
+• Create a bar plot to represent the closing prices using the DataFrame from Exercise 1.
+• Highlight the day with the highest closing price in a different color. """
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+dates = pd.date_range(start='2023-01-01', periods=7, freq='B')  
+closing_prices = np.random.uniform(100, 150, size=len(dates))  
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Closing Price': closing_prices
+})
+
+max_day = df.loc[df['Closing Price'].idxmax(), 'Date']
+
+plt.bar(df['Date'], df['Closing Price'], color='blue')
+
+plt.bar(max_day, df.loc[df['Date'] == max_day, 'Closing Price'], color='red')
+
+plt.title('Closing Prices with Highlighted Max Day')
+plt.xlabel('Date')
+plt.ylabel('Closing Price')
+
+plt.show()
+
+
+
+
+
+
+
+""" • Create a pandas Series of 10 random stock prices.
+• Calculate the daily returns as the percentage change between each price and the previous day’s
+price. """
+
+
+import pandas as pd
+import numpy as np
+
+stock_prices = pd.Series(np.random.uniform(100, 150, size=10), name='Stock Prices')
+
+daily_returns = stock_prices.pct_change() * 100
+
+print("Stock Prices:")
+print(stock_prices)
+print("\nDaily Returns (%):")
+print(daily_returns)
+
+
+
+
+
+
+
+
+""" • Assuming the Series from Exercise 1 represents closing prices, calculate the moving average of these
+prices over a 3-day window.
+• Plot the original closing prices and the moving average on the same chart."""
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+closing_prices = pd.Series(np.random.uniform(100, 150, size=10), name='Closing Prices')
+
+moving_average = closing_prices.rolling(window=3).mean()
+
+plt.plot(closing_prices, label='Closing Prices', marker='o', linestyle='-', color='blue')
+plt.plot(moving_average, label='Moving Average (3-day)', linestyle='--', color='red')
+
+plt.title('Closing Prices and 3-Day Moving Average')
+plt.xlabel('Day')
+plt.ylabel('Closing Price')
+plt.legend()
+plt.grid(True)
+
+plt.show()
+
+
+
+
+
+
+
+
+""" • Create a DataFrame named trades with the following columns and data:
+– Symbol: [’AAPL’, ’MSFT’, ’GOOG’, ’AAPL’, ’GOOG’, ’MSFT’]
+– Date: [’2023-01-01’, ’2023-01-01’, ’2023-01-01’, ’2023-01-02’, ’2023-01-02’, ’2023-01-02’]
+– Volume: [100, 150, 200, 90, 120, 160]
+• Using the created trades DataFrame, group the data by Date and calculate the average trading
+volume per day.
+• Identify the day with the highest average trading volume. """
+
+
+import pandas as pd
+
+trades_data = {
+    'Symbol': ['AAPL', 'MSFT', 'GOOG', 'AAPL', 'GOOG', 'MSFT'],
+    'Date': ['2023-01-01', '2023-01-01', '2023-01-01', '2023-01-02', '2023-01-02', '2023-01-02'],
+    'Volume': [100, 150, 200, 90, 120, 160]
+}
+
+trades = pd.DataFrame(trades_data)
+
+trades['Date'] = pd.to_datetime(trades['Date'])
+
+average_volume_per_day = trades.groupby('Date')['Volume'].mean()
+
+max_volume_day = average_volume_per_day.idxmax()
+max_volume_value = average_volume_per_day.max()
+
+print("Average Trading Volume Per Day:")
+print(average_volume_per_day)
+print(f"\nDay with the Highest Average Trading Volume: {max_volume_day}, Average Volume: {max_volume_value:.2f}")
+
+
+
+
+
+
+
+
+"""• Extend the trades DataFrame by adding a Price column with the following data: [150, 200, 250,
+160, 210, 180].
+• Calculate the total traded value (price multiplied by volume) for each stock symbol using the
+groupby method.
+• Determine which stock had the highest total traded value. """
+
+
+import pandas as pd
+
+trades['Price'] = [150, 200, 250, 160, 210, 180]
+
+trades['Total Traded Value'] = trades['Volume'] * trades['Price']
+
+total_traded_value_per_symbol = trades.groupby('Symbol')['Total Traded Value'].sum()
+
+max_value_stock = total_traded_value_per_symbol.idxmax()
+max_value = total_traded_value_per_symbol.max()
+
+print("Total Traded Value Per Stock Symbol:")
+print(total_traded_value_per_symbol)
+print(f"\nStock with the Highest Total Traded Value: {max_value_stock}, Total Traded Value: {max_value:.2f}")
+
+
+
+
+
+
+
+
+
+""" • Create a DataFrame named stocks with the following data:
+– Symbol: [’AAPL’, ’MSFT’, ’AAPL’, ’GOOG’, ’MSFT’]
+– Date: [’2023-01-01’, ’2023-01-01’, ’2023-01-02’, ’2023-01-02’, ’2023-01-03’]
+– Close: [150, 250, 145, 1000, 255]
+– Volume: [100, 300, 90, 150, 350]
+• Using the created stocks DataFrame, select all rows where ’Symbol’ is ’AAPL’ and ’Close’ is
+greater than 140. """ 
+
+
+import pandas as pd
+
+stocks_data = {
+    'Symbol': ['AAPL', 'MSFT', 'AAPL', 'GOOG', 'MSFT'],
+    'Date': ['2023-01-01', '2023-01-01', '2023-01-02', '2023-01-02', '2023-01-03'],
+    'Close': [150, 250, 145, 1000, 255],
+    'Volume': [100, 300, 90, 150, 350]
+}
+
+stocks = pd.DataFrame(stocks_data)
+
+stocks['Date'] = pd.to_datetime(stocks['Date'])
+
+selected_rows = stocks[(stocks['Symbol'] == 'AAPL') & (stocks['Close'] > 140)]
+
+print("Selected Rows:")
+print(selected_rows)
+
+
+
+
+
+
+
+"""• Extend the stocks DataFrame by adding a new column Volume Change representing the change
+in volume from the previous day. For the first day, use the same volume as the change.
+• Use complex conditions to select rows where ’Volume Change’ is greater than 50 and ’Close’ is less
+than the median closing price of all the data in stocks. """
+
+
+import pandas as pd
+
+stocks['Volume Change'] = stocks['Volume'].diff()
+stocks['Volume Change'].fillna(stocks['Volume'], inplace=True)  # For the first day, use the same volume as the change
+
+median_close_price = stocks['Close'].median()
+
+selected_rows_complex = stocks[(stocks['Volume Change'] > 50) & (stocks['Close'] < median_close_price)]
+
+print("Extended DataFrame:")
+print(stocks)
+print("\nSelected Rows with Complex Conditions:")
+print(selected_rows_complex)
+
+
+
+
+
+
+
+
+""" • You have two DataFrames representing closing and opening prices for a stock over the same period. The DataFrames have columns ‘[’Date’, ’Close’]‘ and ‘[’Date’, ’Open’]‘. Concatenate these
+DataFrames horizontally to create a complete daily stock price dataset.
+• Use the concatenated DataFrame to calculate the daily price movement by subtracting ‘Open‘ from ‘Close‘. """ 
+
+
+import pandas as pd
+
+closing_prices_data = {
+    'Date': ['2023-01-01', '2023-01-02', '2023-01-03'],
+    'Close': [150, 160, 155]
+}
+
+opening_prices_data = {
+    'Date': ['2023-01-01', '2023-01-02', '2023-01-03'],
+    'Open': [145, 155, 150]
+}
+
+closing_prices = pd.DataFrame(closing_prices_data)
+opening_prices = pd.DataFrame(opening_prices_data)
+
+daily_stock_prices = pd.concat([closing_prices, opening_prices['Open']], axis=1)
+
+daily_stock_prices['Daily Price Movement'] = daily_stock_prices['Close'] - daily_stock_prices['Open']
+
+print("Concatenated DataFrame:")
+print(daily_stock_prices)
+
+
+
+
+
+
+
+
+"""• Given a DataFrame ‘df dividends‘ with columns ‘[’Symbol’, ’Ex Date’, ’Dividend’]‘ and another
+DataFrame ‘df earnings‘ with ‘[’Symbol’, ’Report Date’, ’Earnings’]‘, merge them on the ‘Symbol‘
+column to align dividend payout dates with earnings report dates using an outer merge.
+• Analyze the resulting DataFrame to find any symbols with dividends paid out but no earnings
+reported, and vice versa. """ 
+
+
+import pandas as pd
+
+dividends_data = {
+    'Symbol': ['AAPL', 'MSFT', 'GOOG', 'AAPL', 'GOOG'],
+    'Ex Date': ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-02', '2023-01-04'],
+    'Dividend': [2.5, 1.8, 3.0, 2.0, 2.8]
+}
+
+earnings_data = {
+    'Symbol': ['AAPL', 'MSFT', 'GOOG', 'AAPL', 'MSFT'],
+    'Report Date': ['2023-01-02', '2023-01-03', '2023-01-03', '2023-01-05', '2023-01-06'],
+    'Earnings': [5.0, 3.2, 4.5, 6.0, 3.8]
+}
+
+df_dividends = pd.DataFrame(dividends_data)
+df_earnings = pd.DataFrame(earnings_data)
+
+merged_df = pd.merge(df_dividends, df_earnings, on='Symbol', how='outer')
+
+symbols_with_dividends_no_earnings = merged_df[merged_df['Earnings'].isnull()]['Symbol']
+symbols_with_earnings_no_dividends = merged_df[merged_df['Dividend'].isnull()]['Symbol']
+
+print("Symbols with Dividends but No Earnings:")
+print(symbols_with_dividends_no_earnings.tolist())
+
+print("\nSymbols with Earnings but No Dividends:")
+print(symbols_with_earnings_no_dividends.tolist())
+
+
+
+
+
+
+
+""" • Using the provided ‘df prices‘ and ‘df volumes‘ DataFrames, perform a right join and explain the
+resulting DataFrame. Why might this type of join be used in financial analysis?
+• Now, perform an outer join on the same DataFrames and describe the benefits and drawbacks of
+using an outer join when analyzing financial data """ 
+
+
+import pandas as pd
+
+prices_data = {
+    'Symbol': ['AAPL', 'MSFT', 'GOOG'],
+    'Price': [150, 200, 100]
+}
+
+volumes_data = {
+    'Symbol': ['AAPL', 'GOOG', 'IBM'],
+    'Volume': [1000000, 500000, 200000]
+}
+
+df_prices = pd.DataFrame(prices_data)
+df_volumes = pd.DataFrame(volumes_data)
+
+merged_right = pd.merge(df_prices, df_volumes, on='Symbol', how='right')
+
+print("Right Joined DataFrame:")
+print(merged_right)
+
+
+
+
+
+
+
+
+""" Assume you have two DataFrames: ‘df dividends‘ with columns ‘[’Date’, ’Stock’, ’Dividend’]‘ and
+‘df stock splits‘ with columns ‘[’Date’, ’Stock’, ’Split Ratio’]‘. Perform an inner join to find the
+dates and stocks where both dividends were issued and a stock split occurred.
+• Extend the above scenario with an outer join and analyze how it can provide a more comprehensive
+view of corporate actions over a period """ 
+
+
+import pandas as pd
+
+dividends_data = {
+    'Date': ['2023-01-01', '2023-01-02', '2023-01-03'],
+    'Stock': ['AAPL', 'MSFT', 'GOOG'],
+    'Dividend': [2.5, 1.8, 3.0]
+}
+
+stock_splits_data = {
+    'Date': ['2023-01-02', '2023-01-03', '2023-01-04'],
+    'Stock': ['AAPL', 'GOOG', 'MSFT'],
+    'Split Ratio': [2.0, 3.0, 1.5]
+}
+
+df_dividends = pd.DataFrame(dividends_data)
+df_stock_splits = pd.DataFrame(stock_splits_data)
+
+inner_joined_df = pd.merge(df_dividends, df_stock_splits, on=['Date', 'Stock'], how='inner')
+
+print("Inner Joined DataFrame:")
+print(inner_joined_df)
+
+outer_joined_df = pd.merge(df_dividends, df_stock_splits, on=['Date', 'Stock'], how='outer')
+
+print("\nOuter Joined DataFrame:")
+print(outer_joined_df)
 
 
