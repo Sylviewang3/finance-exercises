@@ -1,9 +1,14 @@
-"""LOOP """
+""" Exercise 1. Suppose you have a new list of stock prices: [105, 107, 104, 106, 103]. Calculate and print the daily returns for these stock prices. """
 
 stock_prices = [105, 107, 104, 106, 103]
 for i in range(1, len(stock_prices)):
     daily_return = (stock_prices[i] - stock_prices[i-1]) / stock_prices[i-1]
     print("Daily Return on Day", i, ":", daily_return)
+
+
+
+
+""" Exercice 2 : Modify the code to print the average return over the entire period. """ 
 
 stock_prices = [105, 107, 104, 106, 103]
 total_return = 0
@@ -14,6 +19,12 @@ for i in range(1, len(stock_prices)):
 average_return = total_return / (len(stock_prices) - 1)
 print("Average Return over the Entire Period:", average_return)
 
+
+
+
+
+"""  Exercise 3. Let’s consider a different initial principal and interest rate: principal = 500 and rate = 0.07. Calculate and print the number of years required for this investment to reach a value of 1000. """
+
 principal = 500
 rate = 0.07
 years = 0
@@ -21,6 +32,12 @@ while principal < 1000:
     principal *= (1 + rate)
     years += 1
 print("Number of Years to Reach $1000:", years)
+
+
+
+
+
+""" Exercice 4. Modify the code to print the final value of the investment after those years. """
 
 principal = 500
 rate = 0.07
@@ -32,32 +49,60 @@ final_value = principal
 print("Number of Years to Reach $1000:", years)
 print("Final Value of the Investment:", final_value)
 
-CONDITIONAL STATEMENTS
+
+
+
+
+"""Given the decision criterion to buy a bond based on its yield, you now encounter a new bond with a yield of 3.8. Determine whether to buy this bond or not."""
+
 
 bond_yield = 3.8
+
 if bond_yield > 4.0:
-print("Buy the bond.")
+    print("Buy the bond.")
 else:
-print("Do not buy the bond.")
+    print("Do not buy the bond.")
+
+
+
+
+
+""" Modify the decision criteria to also consider buying the bond if its yield is exactly 4 """
 
 bond_yield = 3.8
+
 if bond_yield == 4.0:
-print("Buy the bond.")
+    print("Buy the bond.")
 else:
-print("Do not buy the bond.")
+    print("Do not buy the bond.")
+
+
+
+
+
+"""Using the given trading strategy, you have to decide what to do with a stock that has a P/E ratio of 17. Print the trading suggestion for this stock."""
 
 pe_ratio = 17
+
 if pe_ratio < 15:
-print("Buy the stock.")
+    print("Buy the stock.")
 elif pe_ratio > 25:
-print("Sell the stock.")
+    print("Sell the stock.")
 else:
-print("Hold the stock.")
+    print("Hold the stock.")
+
+
+
+
+
+""" Modify the trading strategy to consider buying the stock if the P/E ratio is between 14 and 16, and selling if it’s between 23 and 27. """
 
 pe_ratio = 17
-if 14<pe_ratio < 16:
-print("Buy the stock.")
-elif 23<pe_ratio <27:
-print("Sell the stock.")
+
+if 14 < pe_ratio < 16:
+    print("Buy the stock.")
+elif 23 < pe_ratio < 27:
+    print("Sell the stock.")
 else:
-print("Hold the stock.")
+    print("Hold the stock.")
+
