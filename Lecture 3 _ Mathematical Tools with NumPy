@@ -1,35 +1,50 @@
-Exercice 0 
-"Assume you have a list of the daily closing prices of a stock for a month.Write a 'for' loop that calculates the average stock price for that month. Then using a 'while' loop, keep removing the highest daily price one by one until the average price falls below a certain threshold(eg.$100). Printing the new average each time you remove a price."
+"""Exercice 0. Assume you have a list of the daily closing prices of a stock for a month.Write a 'for' loop that calculates the average stock price for that month. Then using a 'while' loop, keep removing the highest daily price one by one until the average price falls below a certain threshold(eg.$100). Printing the new average each time you remove a price."""
 
-immport numpy as np
-closing_prices=[]
-closing_prices=np.random.uniform(80,130,size=20)
-monthly_average=[]
-monthly_average = sum(closing_prices)/len(cloing_prices)
-threshold=100
-while monthly_average>=threshold:
-highest_value=max(closing_prices)
-closing_prices.remove(highest_value)
-monthly_average = sum(closing_prices)/len(closing_prices)
+
+import numpy as np
+
+closing_prices = np.random.uniform(80, 130, size=20)
+
+monthly_average = sum(closing_prices) / len(closing_prices)
+threshold = 100
+
+while monthly_average >= threshold:
+    highest_value = max(closing_prices)
+    closing_prices.remove(highest_value)
+    monthly_average = sum(closing_prices) / len(closing_prices)
+
 print(monthly_average)
 
-Exercice 0 
-"Suppose a day trader follows this strategy: If a stock’s intra-day price
+
+
+
+
+
+""" Exercice 0. Suppose a day trader follows this strategy: If a stock’s intra-day price
 drops more than 5% below its opening price, buy it. If it rises more
 than 10% above the opening price, sell it. Implement this strategy using
-conditional statements."
+conditional statements."""
 
-stock_intra_price = int(input("enter the intra day stock price"))
-opening_price = int(input("enter the opening price"))
-if stock_intra_price < 0.95*opening_price:
-    print("buy it")
-elif stock_intra_price > 1.1*opening_price:
-    print ("sell it")
-else : 
-    print ("keep it")
 
-Exercice 0
-"""Create a class named Stock. It should have attributes for the ticker sym-
+stock_intra_price = float(input("Enter the intra-day stock price: "))
+opening_price = float(input("Enter the opening price: "))
+
+buy_threshold = 0.95
+sell_threshold = 1.1
+
+if stock_intra_price < buy_threshold * opening_price:
+    print("Buy it.")
+elif stock_intra_price > sell_threshold * opening_price:
+    print("Sell it.")
+else:
+    print("Keep it.")
+
+
+
+
+
+
+"""Exercice 0.Create a class named Stock. It should have attributes for the ticker sym-
 bol, base price, and current price. Additionally, implement a method that
 returns the percentage change in price."""
 
@@ -45,42 +60,18 @@ stock1=stock("APPL", 100,110)
 stock_percentage_change=stock1.percentage_change()
 print(f"the percentage change in price is {stock_percentage_change}%")
 
-Exercice 0 
-"""Design a class named Portfolio. It should include a list of stocks (objects
-of the class Stock you created). Implement methods to add a new stock
-to the portfolio, remove a stock based on its ticker symbol, and calculate
-the total value of the portfolio."""
-
-class Stock :
-    def __init__(self,ticker,price):
-        self.ticker = ticker 
-        self.price = price 
-    def__str__(self)
-        return self.ticker
 
 
-apple_stock = Stock (ticker:"AAPL", price : 100)
-print(apple_stock.ticker)
-print(apple_stock.price)
-
-class Portfolio :
-    def__init__(self):
-        self.stocks = []
-
-    def add_stoc(self,stock):
-        self.stocks.append(stock)
-    def remove_stock(self,stock) :
-        self.stocks.remove(stock)
-
-eliott_portfolio = portfolio () 
-print(eliott_portfolio.stocks)
-...
 
 
-NumPy allows to perform bulk mathematical operations on data 
-np is numpy 
 
-Exercice 1 
+""" Exercice 1.Imagine you are trying to simulate the stock price movements using simple
+random walk.
+1. Use NumPy to generate a random series of daily returns (e.g., 1000 days)
+assuming a mean daily return of 0.001 and a standard deviation of 0.02.
+2. Calculate the stock price series starting from an initial stock price of $100.
+3. Print the final stock price after 1000 days. """ 
+
 
 np.random.seed(0) #fixe une graine pour le générateur de nombres aléatoires i.e si on exécute le code plusieurs fois avec la même graine, on obtiendra exactement les mêmes séquences de nombres aléatoires à chaque exécution.
 daily_returns=np.random.normal (0.001,0.02,1000) #on génère 1000 returns de manière aléatoire.
@@ -89,7 +80,22 @@ for r in daily_returns
   stock_prices.append(stock_prices[-1]*(1+r))#takes the last element of the stock_prices list
 print(stock_prices[-1])
 
-Exercice 2 
+
+
+
+
+
+""" Exercice 2. Given the weights of assets in a portfolio and their respective standard deviations, calculate the portfolio variance.
+1. Consider two assets with standard deviations: σ1 = 0.1 and σ2 = 0.2
+respectively.
+2. The correlation coefficient ρ1,2 between them is given as 0.5. (For the
+sake of this exercise. However, in real-world scenarios, you would often
+calculate this from returns data).
+3. The weights of assets in the portfolio are w1 = 0.6 and w2 = 0.4 respectively.
+4. Use NumPy to compute the portfolio variance.
+5. Print the calculated variance""" 
+
+
 
 σ1 = 0.1  # Standard deviation of asset 1
 σ2 = 0.2  # Standard deviation of asset 2 
@@ -99,27 +105,56 @@ w2 = 0.4  # Weight of asset 2 in the portfolio
 portfolio_variance = (w1**2 * σ1**2) + (w2**2 * σ2**2) + (2 * w1 * w2 * σ1 * σ2 * ρ1_2)
 print("Portfolio Variance:", portfolio_variance)
 
-Exercice 3 
 
-returns = np.arrays([0.10,0.15]) 
-returns = np.arrays([0.20,0.30]) 
-weights = np.linspace(0,1,11) #linspace est utilisé pour générer des valeurs régulièrement espacées. On définit une série de poids pour A et B. On commence par 0 pour A et 100 pour B.
+
+
+
+
+"""Exercice 3. Assume you have annual returns for two assets and their corresponding volatilities (standard deviations). You’re interested in combining these two assets in
+various ways to form a portfolio and then evaluating the potential portfolio
+returns and volatilities.
+1. Assume the following annual returns: Asset A: 10%, Asset B: 15%.
+2. Assume the following annual volatilities: Asset A: 20%, Asset B: 30%.
+3. Use NumPy to calculate portfolio returns and volatilities for various weight
+combinations of the two assets.
+4. Print the calculated returns and volatilities for a few weight combinations. """
+
+
+import numpy as np
+
+returns_A = np.array([0.10, 0.15])  
+returns_B = np.array([0.20, 0.30])  
+volatilities = np.array([0.05, 0.08])  
+
+weights = np.linspace(0, 1, 11)
+
 portfolio_returns = []
 portfolio_volatilities = []
-for w in weights : #calcul des rendements et des volatilités du portefeuille pour chaque combinaison de poids
-  portfolio_return =np.dot(returns, [1-w, w]) #on calcule le retour par rapport au poids de l'actif 
-  portfolio_variance = (1-w)**2*volatilities[0]**2+w**2*volatilities [1]**2+2*w*(1-w)*np.cov(returns[0],returns[1])[0,1]
-  portfolio_volatility = np.sqrt(portfolio_variance)
-portfolio_returns.append(portfolio_return)
-portfolio_volatilities.append(portfolio_volatility)
+
+for w in weights:
+    portfolio_return = np.dot(np.array([1 - w, w]), np.array([returns_A.mean(), returns_B.mean()]))
+    
+    portfolio_variance = (1 - w)**2 * volatilities[0]**2 + w**2 * volatilities[1]**2 + 2 * w * (1 - w) * np.cov(returns_A, returns_B)[0, 1]
+    portfolio_volatility = np.sqrt(portfolio_variance)
+    
+    portfolio_returns.append(portfolio_return)
+    portfolio_volatilities.append(portfolio_volatility)
+
 for i in range(len(weights)):
-  print (f"Weight A: {weights[i]*100}%, Weight B: {(1-weights[i])*100}%, Portfolio Return: {portfolio_returns[i]*100:.2f}%, Portfolio Volatility: {portfolio_volatilities[i]*100:.2f}%")
+    print(f"Weight A: {weights[i]*100:.2f}%, Weight B: {(1-weights[i])*100:.2f}%, Portfolio Return: {portfolio_returns[i]*100:.2f}%, Portfolio Volatility: {portfolio_volatilities[i]*100:.2f}%")
 
-Exercice 
 
-"""Create a NumPy array representing the price of a stock for 10 consecutive
+
+
+
+
+
+
+
+"""Exercice Create a NumPy array representing the price of a stock for 10 consecutive
 trading days. Calculate and print the average price, the highest price, and
 the lowest price using NumPy functions."""
+
 
 import numpy as np 
 stock_prices = np.array ([100,105,08,11à,102,115,108,120,112,125])
@@ -133,9 +168,14 @@ print("highest price=", highest_price)
 lowest_price = np.min(stock_prices)
 print("lowest price=",lowest_price)
 
-Exercice 
 
-"""Given a NumPy array of daily stock returns for a month, compute and
+
+
+
+
+
+
+"""Exercice. Given a NumPy array of daily stock returns for a month, compute and
 print the portfolio’s overall monthly return. Then, find and print the day
 which had the highest return and the day with the lowest return""" 
 
@@ -153,6 +193,11 @@ print(max_return)
 min_return = np.argmin(daily_returns)
 print(min_return) 
 
+
+
+
+
+
 """Write a script to simulate the price of a stock for 252 trading days (1
 year). Assume you start with a price of $100 and add daily fluctuations
 randomly, with the daily return normally distributed around 0% (mean)
@@ -163,10 +208,34 @@ returns = np.array(np.random.normal(0,0.031,252))
 stock_prices = [100]
 for r in returns : 
     stock_prices.append(stock_prices[-1]*(1+r))
-print (stock_prices
+print (stock_prices)
+
+
+
+
+
 
 
 """Plot a line graph representing the stock price movement of two competing
 companies over a month. Use different colors and line styles for each
 company. Also, add a legend to distinguish the companies, and labels and
 title for the chart"""
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+days = np.arange(1, 31)
+company1_prices = np.random.uniform(100, 150, size=30)
+company2_prices = np.random.uniform(90, 140, size=30)
+
+plt.plot(days, company1_prices, label='Company A', color='blue', linestyle='-', marker='o')
+plt.plot(days, company2_prices, label='Company B', color='green', linestyle='--', marker='x')
+
+plt.xlabel('Days')
+plt.ylabel('Stock Price')
+plt.title('Stock Price Movement Over a Month')
+
+plt.legend()
+
+plt.show()
