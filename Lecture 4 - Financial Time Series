@@ -1,13 +1,27 @@
-2.1. Exercices related to "working with Time series data" 
+""" Exercice 1. Given the following time series data representing the closing prices of a
+fictional stock:
+dates = ["4th January", "5th January", "6th January"]
+stock_prices = [155, 156, 153]
+Write a Python function to calculate the average stock price over these days. """
 
-Exercice 1 
 
-def calculate_average(prices)
-  return sum(prices)/len(prices)
+def calculate_average(prices):
+    return sum(prices) / len(prices)
+
+stock_prices = [105, 103, 106, 109, 108, 107, 110, 112, 111, 113]
 average_price = calculate_average(stock_prices)
-print(f"average stockprice : ${average_price}")
+print(f"Average stock price: ${average_price:.2f}")
 
-Exercice 2 
+
+
+
+
+
+
+""" Exercice 2. Given the same time series data, write a Python function to find the day
+with the highest stock price. """ 
+
+
 def find_highest_price_day(dates, prices):
     max_price = max(prices)  # Trouve la valeur maximale dans la liste des prix
     max_price_index = prices.index(max_price)  # Trouve l'indice de la valeur maximale dans la liste des prix
@@ -16,7 +30,17 @@ def find_highest_price_day(dates, prices):
 highest_price_day = find_highest_price_day(dates, stock_prices)  # Appelle la fonction pour trouver le jour avec le prix le plus élevé
 print(f"Day with the Highest Stock Price: {highest_price_day}")
 
-Exercice 3
+
+
+
+
+
+
+""" Exercice 3. Extend the data by adding two more days: ”7th January” with a price of
+$157 and ”8th January” with a price of $152. Write a Python function to
+determine if the stock prices are generally increasing, decreasing, or remaining
+stable """
+
 
 def determine_price_trend(prices):
     if all(prices[i] < prices[i+1] for i in range(len(prices) - 1)):
@@ -29,9 +53,19 @@ def determine_price_trend(prices):
 price_trend = determine_price_trend(stock_prices)
 print(f"Stock Price Trend: {price_trend}")
 
-2.2. Exercices related to "Importance of Time Series in Finance" 
 
-Exercice 1 
+
+
+
+
+
+
+""" Exercice 1. Consider a time series data of daily stock prices for a week as follows:
+dates = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+stock_prices = [150, 152, 151, 153, 152]
+Write a Python function to calculate the volatility (standard deviation) of
+these stock prices. """  
+
 
 import statistics
 
@@ -41,7 +75,15 @@ def calculate_volatility(prices) #définition d'une fonction qui prend une liste
 volatility = calculate_volatility(stock_prices)
 print(f"Volatility: ${volatility}")
 
-Exercice 2 
+
+
+
+
+
+
+""" Exercice 2. Given the same time series data, write a Python function to calculate the
+average stock price and highlight days when the stock price is above the average."""
+
 
 def calculate_average(prices):
     return sum(prices) / len(prices)
@@ -57,7 +99,15 @@ print("Days with Stock Price above Average:")
 for day in above_average_days:
     print(day)
 
-Exercice 3
+
+
+
+
+
+
+""" Exercice 3. Given a new set of stock prices, write a Python function to forecast the next
+day’s stock price based on the average increase or decrease of the previous days."""
+
 
 def forecast_next_day_price(prices):
     total_change = 0
