@@ -1,0 +1,74 @@
+""" The purpose of this code is to create a simple financial data analyzer. It starts by collecting data from a CSV file 
+(which could be replaced with data from an online source). Then, it cleans data by removing missing values. Then it calculates
+the mean and standard deviation of prices. Finally, the code creates a visualization of the price distribution and generates 
+an automated report with the mean and standard deviation. """ 
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = pd.read_csv('donnees_financieres.csv')
+
+data = data.dropna()
+
+mean_price = data['Prix'].mean()
+std_dev_price = data['Prix'].std()
+
+sns.histplot(data['Prix'], bins=30, kde=True)
+plt.title('Distribution des Prix')
+plt.show()
+
+report = f"Le prix moyen est {mean_price} et l'écart-type est {std_dev_price}"
+
+print(report)
+
+
+
+
+
+
+
+""" This project can be expanded to include more advanced features such as price prediction """ 
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+data = pd.read_csv('donnees_financieres.csv')
+
+data = data.dropna()  # Supprimer les valeurs manquantes
+
+mean_price = data['Prix'].mean()
+std_dev_price = data['Prix'].std()
+
+sns.histplot(data['Prix'], bins=30, kde=True)
+plt.title('Distribution des Prix')
+plt.show()
+
+X = data[['Caractéristique_X']] # Supposing tha 'Caractéristique_X' will influence the prices
+y = data['Prix']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) # we will split the data between training data and test data
+
+model = LinearRegression() # with the data we can create a linear regression model
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test) # we are then able to make prediction on test data 
+
+rmse = mean_squared_error(y_test, y_pred, squared=False) # we calculate the RMSE
+print(f"Root Mean Squared Error: {rmse}")
+
+plt.scatter(X_test, y_test, color='black', label='Données réelles') # Finally we will be able to vizualise the prediction compared to real values 
+plt.plot(X_test, y_pred, color='blue', linewidth=3, label='Prédiction')
+plt.title('Prédiction des Prix')
+plt.xlabel('Caractéristique_X')
+plt.ylabel('Prix')
+plt.legend()
+plt.show()
+
