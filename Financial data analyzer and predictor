@@ -51,7 +51,7 @@ sns.histplot(data['Prix'], bins=30, kde=True)
 plt.title('Distribution des Prix')
 plt.show()
 
-X = data[['Caractéristique_X']] # Supposing tha 'Caractéristique_X' will influence the prices
+X = data[['Caractéristique_X']] # Supposing that 'Caractéristique_X' will influence the prices
 y = data['Prix']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) # we will split the data between training data and test data
